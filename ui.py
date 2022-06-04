@@ -126,13 +126,16 @@ class MainWindow(QMainWindow):
 
 
     def showDiagram(self):
-        h5py_file = self.response_model
-        csv_file = self.response_csv
-        yaml_file = self.response_yaml[0]
-        # upper_thresh, lower_thresh = helper.yaml_reader(yaml_file)
-        depth_map, intensity_map, horizontal_fov, vertical_fov = helper.h5py_parser(h5py_file)
-        helper.csv_saver(depth_map, horizontal_fov, vertical_fov, csv_file)
-        helper.show_depth_map(csv_file, self.upper_thresh, self.lower_thresh)
+        # QtWidgets.QMessageBox.about(self, "Error", "Message")
+        try:
+            h5py_file = self.response_model
+            csv_file = self.response_csv
+            yaml_file = self.response_yaml[0]
+            depth_map, intensity_map, horizontal_fov, vertical_fov = helper.h5py_parser(h5py_file)
+            helper.csv_saver(depth_map, horizontal_fov, vertical_fov, csv_file)
+            helper.show_depth_map(csv_file, self.upper_thresh, self.lower_thresh)
+        except:
+            QtWidgets.QMessageBox.about(self, "Error", "Please import configuration(.yaml), \nmodel(.hdf5) and pcl(.csv) files !!!")
     
     def exportCSV(self):
         csv_file = self.response_csv
