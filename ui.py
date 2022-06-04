@@ -126,7 +126,6 @@ class MainWindow(QMainWindow):
 
 
     def showDiagram(self):
-        # QtWidgets.QMessageBox.about(self, "Error", "Message")
         try:
             h5py_file = self.response_model
             csv_file = self.response_csv
